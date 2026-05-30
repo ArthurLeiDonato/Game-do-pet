@@ -32,7 +32,7 @@ def alimentar():
     if fome < 0: fome = 0
     if fome > 100: fome = 100
     atualizar_tela() 
-    lbl_mensagem.config(text="Nhac! Que delícia! 🍖", fg="green")
+    lbl_mensagem.config(text="Nhac! Que delícia! 🍖", fg="yellow")
 def mijar():
     global banheiro
     banheiro += 7
@@ -45,7 +45,7 @@ def brincar():
     alegria += 10
     if alegria > 100: alegria = 100
     atualizar_tela()
-    mensagens_alegria = ["Eeeeba!", "estou muito feliz"]
+    mensagens_alegria = ["Eeeeba!", "estou muito feliz", "Hahaha"]
     lbl_mensagem.config(text=random.choice(mensagens_alegria), fg="green")
 
 # 4. Elementos Visuais (Interface)
