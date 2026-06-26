@@ -1,22 +1,24 @@
 import tkinter as tk
+import os
 from tkinter import messagebox
 import random
-import os
 from PIL import Image, ImageTk
 
-
-def carregar_sprite(caminho_relativo):
-    diretorio_atual = os.path.dirname(os.path.abspath(__file__))
-    caminho_absoluto = os.path.join(diretorio_atual, caminho_relativo)
-    
-    imagem = Image.open(caminho_absoluto)
-    imagem = imagem.resize((200, 200))
-    return ImageTk.PhotoImage(imagem)
-
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def equipar_skin(parte, skin):
     skins_equipadas[parte] = skin
     atualizar_pet_visual()
+
+
+
+def carregar_sprite(caminho):
+    caminho_completo = os.path.join(BASE_DIR, caminho)
+    imagem = Image.open(caminho_completo)
+    imagem = imagem.resize((200, 200))
+    return ImageTk.PhotoImage(imagem)
+
+
 
 
 
@@ -217,25 +219,7 @@ botao_banho.pack(pady=10)
 
 
 
-#============================================================
-#Visual da aranha
-#============================================================
 
-class AranhaSprites:
-    def __init__(self, canvas):
-        self.corpo = tk.PhotoImage(file="sprites/corpo/corpo1.png")
-        self.cabelo = tk.PhotoImage(file="sprites/cabelo/cabelo1.png")
-        self.rosto = tk.PhotoImage(file="sprites/rosto/rosto1.png")
-        self.brasos = tk.PhotoImage(file="sprites/brasos/brasos1.png")
-        self.pernas = tk.PhotoImage(file="sprites/pernas/pernas1.png")
-
-#============================================================
-#É aqui que coloca as imagens do nosso pet guys
-#============================================================
-
-#============================================================
-#agora vou fazer o dicionario"
-#============================================================
 
 skins = {
     "corpo": {
@@ -289,10 +273,10 @@ skins = {
         "fechados": carregar_sprite("sprites/olhos/fechados.png")
 }
 }
-
 imagem_original = Image.open(
-    "sprites/corpo/corpo1.png"
+    os.path.join(BASE_DIR, "sprites/corpo/corpo1.png")
 )
+
 
 
 imagem_redimensionada = imagem_original.resize(
@@ -432,10 +416,7 @@ tk.Label(
     janela_skins,
     text="Pernas"
 ).pack()
-tk.Label(
-    janela_skins,
-    text="Pernas"
-).pack()
+
 
 for i in range(1, 4):
 
